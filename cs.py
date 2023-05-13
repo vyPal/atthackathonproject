@@ -1,1 +1,1 @@
-print("skocek")
+print("pitče")
