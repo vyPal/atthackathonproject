@@ -1,1 +1,1 @@
-print("cs")
+print("skocek")
