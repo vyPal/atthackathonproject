@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'recepty.dart';
 
 class Udaje extends StatelessWidget {
   Udaje({super.key, this.res});
@@ -107,12 +108,19 @@ class Udaje extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: Text(
-                'Receipts: ${res["receipts"]}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
+                padding: EdgeInsets.only(right: 1200, top: 30.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Udaje(
+                                res: response.data,
+                              )),
+                    );
+                  },
+                  child: Text('Recieps'),
+                )),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
               child: Text(
