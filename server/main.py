@@ -1,8 +1,10 @@
 from flask import Flask, request
 from flask_pymongo import PyMongo, ObjectId
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 with open('creds.json') as f:
     credentials = json.loads(f.read())
@@ -52,5 +54,5 @@ def getuserdata():
 
         "injuries": patient["injuries"],
         "receipts": y,
-        "medicalReports": x,
+        "medicalReports": x,;
         }
