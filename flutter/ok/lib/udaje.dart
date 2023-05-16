@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
 class Udaje extends StatelessWidget {
+  Udaje({super.key, this.res});
+  final res;
   final dio = Dio();
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,9 @@ class Udaje extends StatelessWidget {
                 Column(children: [
                   Container(
                     padding: EdgeInsets.only(left: 50.0, top: 50.0),
-                    child: const Text(
-                      'Owner first name: ',
-                      style: TextStyle(
+                    child: Text(
+                      "Owner first name: ${res["ownerFirstname"]}",
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -34,16 +36,16 @@ class Udaje extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 50.0, top: 20.0),
-                    child: const Text(
-                      'Owner second name: ',
+                    child: Text(
+                      'Owner second name: ${res["ownerSecondname"]}',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 50.0, top: 20.0),
-                    child: const Text(
-                      'Owner phone number: ',
+                    child: Text(
+                      'Owner phone number: ${res["ownerNumber"]}',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -58,15 +60,15 @@ class Udaje extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.only(left: 200.0, top: 30.0),
-                  child: const Text(
-                    'Chip number:                                     ',
+                  child: Text(
+                    'Chip number:   ${res["uuid"]}                    ',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 200.0, top: 30.0),
-                  child: const Text(
-                    'Animal type:                                    ',
+                  child: Text(
+                    'Animal type:     ${res["AnimalType"]}                ',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -76,15 +78,15 @@ class Udaje extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.only(left: 200.0, top: 30.0),
-                  child: const Text(
-                    'Birthdate:                                                                                 ',
+                  child: Text(
+                    'Birthdate:         ${res["birthdate"]}                                                     ',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 30.0),
-                  child: const Text(
-                    'Animal name: ',
+                  child: Text(
+                    'Animal name: ${res["animalName"]}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 )
@@ -92,43 +94,36 @@ class Udaje extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: const Text(
-                'Long term illnesses: ',
+              child: Text(
+                'Long term illnesses: ${res["longTermIllnesses"]}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: const Text(
-                'Injuries: ',
+              child: Text(
+                'Injuries: ${res["injuries"]}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: const Text(
-                'Receipts: ',
+              child: Text(
+                'Receipts: ${res["receipts"]}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: const Text(
-                'Medical reports: ',
+              child: Text(
+                'Medical reports: ${res["medicalReports"]}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: const Text(
-                'Medication:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: const Text(
-                'Alergies: ',
+              child: Text(
+                'Alergies: ${res["alergies"]}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             )
