@@ -1,0 +1,3 @@
+Doctor: all with pin
+Paramedic: without pin
+Pharmacist: only basic information and recipes
