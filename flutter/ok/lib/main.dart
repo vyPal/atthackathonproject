@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:ok/registrace.dart';
 import 'vojtovaStranka.dart';
 
 void main() {
@@ -112,6 +113,16 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Log in'),
             ),
+            FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Registrace()),
+                );
+              },
+              child: Icon(Icons.add),
+              backgroundColor: const Color.fromARGB(255, 3, 68, 122),
+            )
           ],
         ),
       ),

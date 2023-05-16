@@ -67,19 +67,17 @@ class Newrecipe extends StatelessWidget {
             String username = textFieldController_pole2.text;
             String uid = "70 17 C1 80";
 
-            final response =
-                await dio.post('http://10.10.11.204:5000/newrecipe',
-                    data: FormData.fromMap({
-                      "obsah": obsah,
-                      "uuid": uid,
-                      "username": username,
-                    }),
-                    options: Options(headers: {
-                      "Access-Control-Allow-Origin": "*",
-                      "Access-Control-Allow-Methods": "POST",
-                      "Origin": "http://10.10.11.204:5000"
-                    }));
-            print(response);
+            await dio.post('http://10.10.11.204:5000/newrecipe',
+                data: FormData.fromMap({
+                  "obsah": obsah,
+                  "uuid": uid,
+                  "username": username,
+                }),
+                options: Options(headers: {
+                  "Access-Control-Allow-Origin": "*",
+                  "Access-Control-Allow-Methods": "POST",
+                  "Origin": "http://10.10.11.204:5000"
+                }));
 
             Navigator.push(
               context,
