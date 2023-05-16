@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'loading.dart';
-import 'udaje.dart';
+import 'vojtovaStranka.dart';
 
 void main() {
   runApp(const MyApp());
@@ -89,10 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 String username = textFieldController_username.text;
                 String password = textFieldController_password.text;
+
                 String uid = "70 17 C1 80";
 
                 final response = await dio.post(
-                    'http://10.10.11.204:5000/getuserdata',
+                    'http://10.10.11.204:5000/getdoctordata',
                     data: FormData.fromMap({
                       "username": username,
                       "password": password,
@@ -107,10 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => Udaje(
-                            res: response.data,
-                          )),
+                  MaterialPageRoute(builder: (context) => Vojta()),
                 );
               },
               child: Text('Log in'),

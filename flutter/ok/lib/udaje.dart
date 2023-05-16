@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:ok/newrecipe.dart';
 import 'recepty.dart';
+import 'medical.dart';
+import 'newrecipe.dart';
 
 class Udaje extends StatelessWidget {
   Udaje({super.key, this.res});
@@ -108,25 +111,82 @@ class Udaje extends StatelessWidget {
               ),
             ),
             Container(
-                padding: EdgeInsets.only(right: 1200, top: 30.0),
-                child: TextButton(
-                  onPressed: () {
+              padding: EdgeInsets.only(right: 1200, top: 30.0),
+              child: ElevatedButton(
+                  onPressed: () async {
+                    String uid = "70 17 C1 80";
+
+                    final response =
+                        await dio.post('http://10.10.11.204:5000/getdoctordata',
+                            data: FormData.fromMap({"uuid": uid}),
+                            options: Options(headers: {
+                              "Access-Control-Allow-Origin": "*",
+                              "Access-Control-Allow-Methods": "POST",
+                              "Origin": "http://10.10.11.204:5000"
+                            }));
+                    print(response);
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Udaje(
+                          builder: (context) => Recepty(
                                 res: response.data,
                               )),
                     );
                   },
-                  child: Text('Recieps'),
-                )),
+                  child: Text('Reciep')),
+            ),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: Text(
-                'Medical reports: ${res["medicalReports"]}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+              child: ElevatedButton(
+                  onPressed: () async {
+                    String uid = "70 17 C1 80";
+
+                    final response =
+                        await dio.post('http://10.10.11.204:5000/getdoctordata',
+                            data: FormData.fromMap({"uuid": uid}),
+                            options: Options(headers: {
+                              "Access-Control-Allow-Origin": "*",
+                              "Access-Control-Allow-Methods": "POST",
+                              "Origin": "http://10.10.11.204:5000"
+                            }));
+                    print(response);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Medical(
+                                res: response.data,
+                              )),
+                    );
+                  },
+                  child: Text('Medical')),
+            ),
+            Container(
+              padding: EdgeInsets.only(right: 1200, top: 30.0),
+              child: ElevatedButton(
+                  onPressed: () async {
+                    String uid = "70 17 C1 80";
+
+                    final response =
+                        await dio.post('http://10.10.11.204:5000/getdoctordata',
+                            data: FormData.fromMap({"uuid": uid}),
+                            options: Options(headers: {
+                              "Access-Control-Allow-Origin": "*",
+                              "Access-Control-Allow-Methods": "POST",
+                              "Origin": "http://10.10.11.204:5000"
+                            }));
+                    print(response);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Newrecipe(
+                                res: response.data,
+                              )),
+                    );
+                  },
+                  child: Text('New recipe')),
             ),
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
