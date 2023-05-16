@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'loading.dart';
 import 'udaje.dart';
@@ -37,6 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
       TextEditingController();
   final TextEditingController textFieldController_password =
       TextEditingController();
+
+  final dio = Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -83,13 +86,31 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 String username = textFieldController_username.text;
                 String password = textFieldController_password.text;
+                String uid = "70 17 C1 80";
+
+                final response = await dio.post(
+                    'http://10.10.11.204:5000/getuserdata',
+                    data: FormData.fromMap({
+                      "username": username,
+                      "password": password,
+                      "uuid": uid
+                    }),
+                    options: Options(headers: {
+                      "Access-Control-Allow-Origin": "*",
+                      "Access-Control-Allow-Methods": "POST",
+                      "Origin": "http://10.10.11.204:5000"
+                    }));
+                print(response);
 
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Udaje()),
+                  MaterialPageRoute(
+                      builder: (context) => Udaje(
+                            res: response.data,
+                          )),
                 );
               },
               child: Text('Log in'),
