@@ -1,0 +1,7 @@
+GET   /                           domovská stránka (to co kutí seba)
+
+GET   /device/assign              Arduina budou dotazovat, vráceno by mělo být jednočíselné unikátní ID
+GET   /device/read                Arduino pošle svoje ID a UID čipu
+
+GET   /devices                    Pro web. server, vrátí ID všech připojených arduin
+GET   /devices/((ID))/uid         Pro web, vrátí poslední UID přečtené arduinem s daným ID
