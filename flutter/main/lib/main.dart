@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+<<<<<<< HEAD
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login Page'),
+      ),
+      body: Container(),
+=======
 void main() => runApp(const SignUpApp());
 
 class SignUpApp extends StatelessWidget {
@@ -97,6 +107,7 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
         ],
       ),
+>>>>>>> c8e454b33f7fdeeee25502e741cb022b006a1b26
     );
   }
 }
