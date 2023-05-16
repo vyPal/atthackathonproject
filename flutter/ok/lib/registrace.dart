@@ -125,7 +125,7 @@ class Registrace extends StatelessWidget {
                 String uid = "70 17 C1 80";
 
                 final response =
-                    await dio.post('http://10.10.11.204:5000/getdoctordata',
+                    await dio.post('http://10.10.11.204:5000/registration',
                         data: FormData.fromMap({
                           "username": username,
                           "password1": password1,

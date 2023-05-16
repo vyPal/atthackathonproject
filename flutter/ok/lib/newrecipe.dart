@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'udaje.dart';
+import 'promnene.dart';
 
 class Newrecipe extends StatelessWidget {
   Newrecipe({super.key, this.res});
@@ -8,6 +9,8 @@ class Newrecipe extends StatelessWidget {
       TextEditingController();
   final TextEditingController textFieldController_pole2 =
       TextEditingController();
+
+  void prijmiHodnotu(String uuid) {}
 
   final res;
   final dio = Dio();
@@ -65,12 +68,11 @@ class Newrecipe extends StatelessWidget {
           onPressed: () async {
             String obsah = textFieldController_pole1.text;
             String username = textFieldController_pole2.text;
-            String uid = "70 17 C1 80";
 
             await dio.post('http://10.10.11.204:5000/newrecipe',
                 data: FormData.fromMap({
                   "obsah": obsah,
-                  "uuid": uid,
+                  "uuid": uuid,
                   "username": username,
                 }),
                 options: Options(headers: {
