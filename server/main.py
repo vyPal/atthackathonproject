@@ -18,65 +18,39 @@ def getuserdata():
     username = request.form["username"]
     password = request.form["password"]
     uuid = request.form["uuid"]
-
-    doctor = mongo.db.doctors.find_one_or_404({"username": username, "password": password})
+    mongo.db.doctors.find_one_or_404({"username": username, "password": password})
+    print(uuid)
     patient = mongo.db.patients.find_one_or_404({"uuid": uuid})
-
-    if doctor["type"] == "paramedic" or doctor["type"] == "doctor":
-        return {
-            "firstname": patient["firstname"],
-            "secondname": patient["secondname"],
-            "birthdate": patient["birthdate"],
-            "insurednumber": patient["insuredNumber"],
-            "zpcode": patient["zpcode"],
-            "bloodtype": patient["bloodtype"],
-            "alergies": patient["alergies"],
-            "longtermillnesses": patient["longTermIllnesses"],
-            "injuries": patient["injuries"]
-        }
-    
-@app.route("/getuserdatawpin", methods = ['POST'])
-def getuserdatawpin():
-    username = request.form["username"]
-    password = request.form["password"]
-    uuid = request.form["uuid"]
-    pin = request.form["pin"]
-
-    doctor = mongo.db.doctors.find_one_or_404({"username": username, "password": password})
-    patient = mongo.db.patients.find_one_or_404({"uuid": uuid, "pin": pin})
+    print(uuid)
 
     y = []
     for i in patient["receipts"]:
+        print("idk")
         rec = mongo.db.recipe.find_one_or_404({"_id": ObjectId(i)})
+        print("tady")
         rec.pop("_id", None)
         y.append(rec)
 
     x = []
     for i in patient["medicalreports"]:
-        rec = mongo.db.recipe.find_one_or_404({"_id": ObjectId(i)})
+        print("idk2")
+        rec = mongo.db.medicalReport.find_one_or_404({"_id": ObjectId(i)})
+        print("nebo tady")
         rec.pop("_id", None)
         x.append(rec)
 
-    if doctor["type"] == "doctor":
-        return {
-            "firstname": patient["firstname"],
-            "secondname": patient["secondname"],
-            "birthdate": patient["birthdate"],
-            "insurednumber": patient["insuredNumber"],
-            "zpcode": patient["zpcode"],
-            "bloodtype": patient["bloodtype"],
-            "alergies": patient["alergies"],
-            "longtermillnesses": patient["longTermIllnesses"],
-            "injuries": patient["injuries"],
-            "receipts": y,
-            "medicalreports": x,
-            "medication": patient["medication"]
-        } 
-    
-    if doctor["type"] == "pharmacist":
-        return {
-            "firstname": patient["firstname"],
-            "secondname": patient["secondname"],
-            "birthdate": patient["birthdate"],
-            "receipts": y
+    return {
+        "ownerSecondname": patient["ownerSecondname"],
+        "ownerFirstname": patient["ownerFirstname"],
+        "ownerNumber": patient["ownerNumber"],
+        "birthdate": patient["birthdate"],
+        "AnimalType": patient["AnimalType"],
+        "animalName": patient["animalName"],
+
+        "alergies": patient["alergies"],
+        "longTermIllness": patient["longTermIllnesses"],
+
+        "injuries": patient["injuries"],
+        "receipts": y,
+        "medicalReports": x,
         }
