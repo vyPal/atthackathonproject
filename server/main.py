@@ -42,6 +42,7 @@ def getuserdata():
         x.append(rec)
 
     return {
+        "uuid": patient["uuid"],
         "ownerSecondname": patient["ownerSecondname"],
         "ownerFirstname": patient["ownerFirstname"],
         "ownerNumber": patient["ownerNumber"],
@@ -54,5 +55,5 @@ def getuserdata():
 
         "injuries": patient["injuries"],
         "receipts": y,
-        "medicalReports": x,;
+        "medicalReports": x,
         }
