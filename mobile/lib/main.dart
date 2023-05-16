@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 import 'package:dio/dio.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,15 +57,51 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   Map<String, dynamic> animal = {};
+  List<ScanResult> devices = [];
   final dio = Dio();
 
   @override
   void initState() {
-    idk();
     super.initState();
+    idk();
   }
 
-  void idk() {
+  Future<void> requestPermission(Permission permission) async {
+    final status = await permission.request();
+    print(status);
+  }
+
+  Future<List<ScanResult>> bluetoothScan() async {
+    List<ScanResult> bluetoothDevices = [];
+    FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
+    //Stop scan before restarting scan too prevent errors when trying to scan
+    await flutterBlue.stopScan();
+    print("Start scan");
+    // Start scanning
+    List<dynamic> foundDevices = await flutterBlue
+        .startScan(
+          timeout: const Duration(
+            seconds: 30,
+          ),
+        )
+        .asStream()
+        .toList();
+    await flutterBlue.stopScan();
+    print("Scan end");
+    for (dynamic devices in foundDevices) {
+      for (ScanResult device in devices) {
+        bluetoothDevices.add(device);
+      }
+    }
+    return bluetoothDevices;
+  }
+
+  void idk() async {
+    List<ScanResult> d = await bluetoothScan();
+    setState(() {
+      devices = d;
+    });
+    //flutterBlue.stopScan();
     NfcManager.instance.startSession(
       onDiscovered: (NfcTag tag) async {
         print(tag.data.toString());
@@ -126,6 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 "Owner: ${animal["ownerFirstname"]} ${animal["ownerSecondname"]}"),
             Text("Onwer phone number: ${animal["ownerNumber"]}"),
             Text("Year of birth: ${animal["birthdate"]}"),
+            for (ScanResult d in devices) Text(d.rssi.toString())
           ],
         ),
       ),
