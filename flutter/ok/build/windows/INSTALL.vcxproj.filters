@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\sondr\OneDrive\Plocha\hacaton\atthackathonproject\flutter\ok\build\windows\CMakeFiles\6c2cd6e093b8489814e37c946dcbda96\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C18C6C78-BF17-3107-ADD9-C717C78766EE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
