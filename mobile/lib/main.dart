@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 import 'package:dio/dio.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Animal tag something'),
+      home: const MyHomePage(title: 'Pet tag public info'),
     );
   }
 }
@@ -66,11 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
     idk();
   }
 
-  Future<void> requestPermission(Permission permission) async {
-    final status = await permission.request();
-    print(status);
-  }
-
   Future<List<ScanResult>> bluetoothScan() async {
     List<ScanResult> bluetoothDevices = [];
     FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
@@ -97,10 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void idk() async {
+    /*
     List<ScanResult> d = await bluetoothScan();
     setState(() {
       devices = d;
     });
+    */
     //flutterBlue.stopScan();
     NfcManager.instance.startSession(
       onDiscovered: (NfcTag tag) async {
@@ -113,9 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
             "${id1.toRadixString(16).padLeft(2, '0').toUpperCase()} ${id2.toRadixString(16).padLeft(2, '0').toUpperCase()} ${id3.toRadixString(16).padLeft(2, '0').toUpperCase()} ${id4.toRadixString(16).padLeft(2, '0').toUpperCase()}";
         print(id);
         print(id == "70 17 C1 80");
-        final response = await dio.post('http://10.10.11.204:5000/getuserdata',
-            data: FormData.fromMap(
-                {"username": "SobekSeba", "password": "Sobek123", "uuid": id}));
+        final response = await dio.post(
+            'http://10.10.11.204:5000/getdoctordata',
+            data: FormData.fromMap({"uuid": id}));
         print(response);
         print(response.data);
         setState(() {
@@ -142,32 +140,141 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("Animal: ${animal["AnimalType"]}"),
-            Text("Name: ${animal["animalName"]}"),
+        child: animal["animalName"] == null
+            ? const Text(
+                "Please place tag near reader",
+                style: TextStyle(fontSize: 24),
+              )
+            : Column(
+                // Column is also a layout widget. It takes a list of children and
+                // arranges them vertically. By default, it sizes itself to fit its
+                // children horizontally, and tries to be as tall as its parent.
+                //
+                // Invoke "debug painting" (press "p" in the console, choose the
+                // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                // to see the wireframe for each widget.
+                //
+                // Column has various properties to control how it sizes itself and
+                // how it positions its children. Here we use mainAxisAlignment to
+                // center the children vertically; the main axis here is the vertical
+                // axis because Columns are vertical (the cross axis would be
+                // horizontal).
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(32),
+                    child: Row(
+                      children: [
+                        if (animal["AnimalType"] == "Dog")
+                          const FaIcon(
+                            FontAwesomeIcons.dog,
+                            size: 96,
+                          ),
+                        if (animal["AnimalType"] == "Cat")
+                          const FaIcon(
+                            FontAwesomeIcons.cat,
+                            size: 96,
+                          ),
+                        if (animal["AnimalType"] == "Kůň")
+                          const FaIcon(
+                            FontAwesomeIcons.horse,
+                            size: 96,
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 32),
+                          child: Column(
+                            children: [
+                              Text(
+                                animal["animalName"],
+                                style: const TextStyle(
+                                    fontSize: 32, fontWeight: FontWeight.bold),
+                              ),
+                              Text("Year of birth: ${animal["birthdate"]}")
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                                "Owner: ${animal["ownerFirstname"]} ${animal["ownerSecondname"]}")
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            Text("Phone number: ${animal["ownerNumber"]}")
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24),
+                    child: Row(
+                      children: [
+                        const Text("Alergies:"),
+                      ],
+                    ),
+                  ),
+                  for (String alergie in animal["alergies"]) Text(alergie),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24),
+                    child: Row(
+                      children: [
+                        const Text("Long term illnesses:"),
+                      ],
+                    ),
+                  ),
+                  for (String illness in animal["longTermIllness"])
+                    Text(illness),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24),
+                    child: Row(
+                      children: [
+                        const Text("Injuries:"),
+                      ],
+                    ),
+                  ),
+                  for (String injury in animal["injuries"]) Text(injury),
+                  /*
             Text(
-                "Owner: ${animal["ownerFirstname"]} ${animal["ownerSecondname"]}"),
-            Text("Onwer phone number: ${animal["ownerNumber"]}"),
-            Text("Year of birth: ${animal["birthdate"]}"),
-            for (ScanResult d in devices) Text(d.rssi.toString())
-          ],
-        ),
+              "Animal: ${animal["AnimalType"]}",
+              style: const TextStyle(fontSize: 24),
+            ),
+            Text(
+              "Name: ${animal["animalName"]}",
+              style: const TextStyle(fontSize: 24),
+            ),
+            Text(
+              "Owner: ${animal["ownerFirstname"]} ${animal["ownerSecondname"]}",
+              style: const TextStyle(fontSize: 24),
+            ),
+            Text(
+              "Onwer phone number: ${animal["ownerNumber"]}",
+              style: const TextStyle(fontSize: 24),
+            ),
+            Text(
+              "Year of birth: ${animal["birthdate"]}",
+              style: const TextStyle(fontSize: 24),
+            ),
+            */
+                  //for (ScanResult d in devices) Text(d.rssi.toString())
+                ],
+              ),
       ),
     );
   }
