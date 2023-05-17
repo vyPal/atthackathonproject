@@ -107,3 +107,59 @@ def newmedicalreport():
     )
     return None
 
+
+@app.route("/registration", methods = ['POST'])
+def registration():
+    collection = mongo.db.doctors
+
+    username = request.form["username"]
+    password = request.form["password1"]
+    password2 = request.form["password2"]
+    firstName = request.form["firstname"]
+    secondName = request.form["secondname"]
+
+    if password == password2:
+        collection.insert_one(
+        {    
+            "username": username,
+            "secondName": secondName,
+            "firstName": firstName,
+            "password": password,
+        }
+        )
+    else:
+        return "tady mas redscreen"
+    
+    return None
+
+
+@app.route("/medicalreports", methods = ['POST'])
+def medicalreports():
+    uuid = request.form["uuid"]
+
+    patient = mongo.db.patients.find_one_or_404({"uuid": uuid})
+
+    x = []
+    for i in patient["medicalreports"]:
+        rec = mongo.db.medicalReport.find_one_or_404({"_id": ObjectId(i)})
+        rec.pop("_id", None)
+        x.append(rec)
+
+    print(x)
+    return None
+
+
+@app.route("/recipes", methods = ['POST'])
+def recipes():
+    uuid = request.form["uuid"]
+
+    patient = mongo.db.patients.find_one_or_404({"uuid": uuid})
+
+    y = []
+    for i in patient["receipts"]:
+        rec = mongo.db.recipe.find_one_or_404({"_id": ObjectId(i)})
+        rec.pop("_id", None)
+        y.append(rec)
+
+    print(y)
+    return None
