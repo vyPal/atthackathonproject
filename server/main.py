@@ -79,7 +79,7 @@ def newrecipe():
     {    
         "patientChipNumber": patientChipNumber,
         "medicationType": medicationType,
-        "doctorID": "646381c7558c89f7b426395c", #musim udelat to blby id
+        "doctorID": doctor["_id"],
     }
     )
     return None
@@ -102,7 +102,7 @@ def newmedicalreport():
         "patientChipNumber": patientChipNumber,
         "reportDate": reportDate,
         "diagnose": diagnose,
-        "doctorID": "646381c7558c89f7b426395c", #musim udelat to blby id
+        "doctorID": doctor["_id"],
     }
     )
     return None
@@ -146,7 +146,7 @@ def medicalreports():
         x.append(rec)
 
     print(x)
-    return None
+    return x
 
 
 @app.route("/recipes", methods = ['POST'])
@@ -162,4 +162,4 @@ def recipes():
         y.append(rec)
 
     print(y)
-    return None
+    return y

@@ -225,31 +225,54 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 24),
                     child: Row(
-                      children: [
-                        const Text("Alergies:"),
+                      children: const [
+                        Text("Alergies:"),
                       ],
                     ),
                   ),
-                  for (String alergie in animal["alergies"]) Text(alergie),
+                  for (String alergy in animal["alergies"])
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32),
+                      child: Row(
+                        children: [
+                          Text("• $alergy"),
+                        ],
+                      ),
+                    ),
                   Padding(
                     padding: const EdgeInsets.only(left: 24),
                     child: Row(
-                      children: [
-                        const Text("Long term illnesses:"),
+                      children: const [
+                        Text("Long term illnesses:"),
                       ],
                     ),
                   ),
                   for (String illness in animal["longTermIllness"])
-                    Text(illness),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32),
+                      child: Row(
+                        children: [
+                          Text("• $illness"),
+                        ],
+                      ),
+                    ),
                   Padding(
                     padding: const EdgeInsets.only(left: 24),
                     child: Row(
-                      children: [
-                        const Text("Injuries:"),
+                      children: const [
+                        Text("Injuries:"),
                       ],
                     ),
                   ),
-                  for (String injury in animal["injuries"]) Text(injury),
+                  for (String injury in animal["injuries"])
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32),
+                      child: Row(
+                        children: [
+                          Text("• $injury"),
+                        ],
+                      ),
+                    ),
                   /*
             Text(
               "Animal: ${animal["AnimalType"]}",
