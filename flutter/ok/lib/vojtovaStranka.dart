@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'udaje.dart';
+import 'promnene.dart';
 
 class Vojta extends StatelessWidget {
   final TextEditingController textFieldController_pation =
@@ -38,9 +39,7 @@ class Vojta extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 String uuid = textFieldController_pation.text;
-
-                String uid = "70 17 C1 80";
-
+                Newrecipe().prijmiHodnotu(uuid);
                 final response =
                     await dio.post('http://10.10.11.204:5000/getdoctordata',
                         data: FormData.fromMap({"uuid": uuid}),

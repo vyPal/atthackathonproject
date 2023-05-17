@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:ok/registrace.dart';
 import 'vojtovaStranka.dart';
 
 void main() {
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       TextEditingController();
 
   final dio = Dio();
-
+  bool _obscurePassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,13 +74,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: TextField(
-                textAlign: TextAlign.center,
+              child: TextFormField(
                 controller: textFieldController_password,
+                obscureText: _obscurePassword,
                 decoration: InputDecoration(
-                  hintText: 'password',
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(10),
+                  labelText: 'Heslo',
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
                 ),
               ),
             ),
@@ -91,27 +102,39 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 String uid = "70 17 C1 80";
 
-                final response = await dio.post(
-                    'http://10.10.11.204:5000/getdoctordata',
-                    data: FormData.fromMap({
-                      "username": username,
-                      "password": password,
-                      "uuid": uid
-                    }),
-                    options: Options(headers: {
-                      "Access-Control-Allow-Origin": "*",
-                      "Access-Control-Allow-Methods": "POST",
-                      "Origin": "http://10.10.11.204:5000"
-                    }));
+                final response =
+                    await dio.post('http://10.10.11.204:5000/getuserdata',
+                        data: FormData.fromMap({
+                          "username": username,
+                          "password": password,
+                        }),
+                        options: Options(headers: {
+                          "Access-Control-Allow-Origin": "*",
+                          "Access-Control-Allow-Methods": "POST",
+                          "Origin": "http://10.10.11.204:5000"
+                        }));
                 print(response);
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Vojta()),
-                );
+                if (response.statusCode == 200) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Vojta()),
+                  );
+                }
               },
               child: Text('Log in'),
             ),
+            Container(
+                padding: EdgeInsets.only(left: 1000, top: 400),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Registrace()),
+                    );
+                  },
+                  child: Icon(Icons.add),
+                  backgroundColor: const Color.fromARGB(255, 3, 68, 122),
+                ))
           ],
         ),
       ),
