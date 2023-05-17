@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'udaje.dart';
-import 'promnene.dart';
+import 'package:session_storage/session_storage.dart';
 
 class Vojta extends StatelessWidget {
   final TextEditingController textFieldController_pation =
@@ -9,6 +9,7 @@ class Vojta extends StatelessWidget {
 
   final dio = Dio();
 
+  final session = SessionStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +40,9 @@ class Vojta extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 String uuid = textFieldController_pation.text;
-                Newrecipe().prijmiHodnotu(uuid);
+
+                session['uuid'] = uuid;
+
                 final response =
                     await dio.post('http://10.10.11.204:5000/getdoctordata',
                         data: FormData.fromMap({"uuid": uuid}),

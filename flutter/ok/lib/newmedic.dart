@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'udaje.dart';
+import 'package:session_storage/session_storage.dart';
 
 class Newmedic extends StatelessWidget {
   Newmedic({super.key, this.res});
@@ -10,6 +11,7 @@ class Newmedic extends StatelessWidget {
       TextEditingController();
   final TextEditingController textFieldController_pole3 =
       TextEditingController();
+  final session = SessionStorage();
 
   final res;
   final dio = Dio();
@@ -90,7 +92,7 @@ class Newmedic extends StatelessWidget {
             await dio.post('http://10.10.11.204:5000/newmedicalreport',
                 data: FormData.fromMap({
                   "obsah": obsah,
-                  "uuid": uid,
+                  "uuid": session["uuid"],
                   "username": username,
                   "date": date,
                 }),
