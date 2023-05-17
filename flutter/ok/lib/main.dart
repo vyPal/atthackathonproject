@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 controller: textFieldController_password,
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
-                  labelText: 'Heslo',
+                  labelText: 'Password',
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword
@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               },
               child: Text('Log in'),
-            ),
+            ), /*
             Container(
                 padding: EdgeInsets.only(left: 1000, top: 400),
                 child: FloatingActionButton(
@@ -135,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Icon(Icons.add),
                   backgroundColor: const Color.fromARGB(255, 3, 68, 122),
                 ))
+                */
           ],
         ),
       ),

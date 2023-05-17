@@ -12,7 +12,7 @@ class Medical extends StatelessWidget {
         backgroundColor: Colors.lightBlue,
         centerTitle: true,
         title: const Text(
-          "Název",
+          "Pet tag private info",
           style: TextStyle(
               fontSize: 70,
               fontStyle: FontStyle.italic,

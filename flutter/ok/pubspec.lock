@@ -138,8 +138,7 @@ packages:
       sha256: db9d4f58c908a4ba5953fcee2ae317c94889433e5024c27ce74a37f94267945b
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
-    version: "1.8.3"
+    version: "1.8.2"
   session_storage:
     dependency: "direct main"
     description:
@@ -148,9 +147,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.1"
-=======
-    version: "1.8.2"
->>>>>>> b147e8d17a5814404e60ef105488038a6575af37
   sky_engine:
     dependency: transitive
     description: flutter

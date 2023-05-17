@@ -188,9 +188,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               Text(
                                 animal["animalName"],
                                 style: const TextStyle(
-                                    fontSize: 32, fontWeight: FontWeight.bold),
+                                    fontSize: 38, fontWeight: FontWeight.bold),
                               ),
-                              Text("Year of birth: ${animal["birthdate"]}")
+                              Text(
+                                "Year of birth: ${animal["birthdate"]}",
+                                style: const TextStyle(fontSize: 18),
+                              )
                             ],
                           ),
                         ),
@@ -204,7 +207,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         Column(
                           children: [
                             Text(
-                                "Owner: ${animal["ownerFirstname"]} ${animal["ownerSecondname"]}")
+                              "Owner: ${animal["ownerFirstname"]} ${animal["ownerSecondname"]}",
+                              style: const TextStyle(fontSize: 18),
+                            )
                           ],
                         )
                       ],
@@ -216,7 +221,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Column(
                           children: [
-                            Text("Phone number: ${animal["ownerNumber"]}")
+                            Text(
+                              "Phone number: ${animal["ownerNumber"]}",
+                              style: const TextStyle(fontSize: 18),
+                            )
                           ],
                         )
                       ],
@@ -226,7 +234,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.only(left: 24),
                     child: Row(
                       children: const [
-                        Text("Alergies:"),
+                        Text(
+                          "Alergies:",
+                          style: const TextStyle(fontSize: 18),
+                        ),
                       ],
                     ),
                   ),
@@ -235,7 +246,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(left: 32),
                       child: Row(
                         children: [
-                          Text("• $alergy"),
+                          Text(
+                            "• $alergy",
+                            style: const TextStyle(fontSize: 18),
+                          ),
                         ],
                       ),
                     ),
@@ -243,7 +257,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.only(left: 24),
                     child: Row(
                       children: const [
-                        Text("Long term illnesses:"),
+                        Text(
+                          "Long term illnesses:",
+                          style: const TextStyle(fontSize: 18),
+                        ),
                       ],
                     ),
                   ),
@@ -252,7 +269,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(left: 32),
                       child: Row(
                         children: [
-                          Text("• $illness"),
+                          Text(
+                            "• $illness",
+                            style: const TextStyle(fontSize: 18),
+                          ),
                         ],
                       ),
                     ),
@@ -260,7 +280,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.only(left: 24),
                     child: Row(
                       children: const [
-                        Text("Injuries:"),
+                        Text(
+                          "Injuries:",
+                          style: const TextStyle(fontSize: 18),
+                        ),
                       ],
                     ),
                   ),
@@ -269,7 +292,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(left: 32),
                       child: Row(
                         children: [
-                          Text("• $injury"),
+                          Text(
+                            "• $injury",
+                            style: const TextStyle(fontSize: 18),
+                          ),
                         ],
                       ),
                     ),

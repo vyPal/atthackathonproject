@@ -20,9 +20,9 @@ class Udaje extends StatelessWidget {
           backgroundColor: Colors.lightBlue,
           centerTitle: true,
           title: const Text(
-            "Název",
+            "Pet tag private info",
             style: TextStyle(
-                fontSize: 70,
+                fontSize: 48,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold),
           ),
@@ -87,7 +87,7 @@ class Udaje extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.only(left: 200.0, top: 30.0),
                   child: Text(
-                    'Birthdate:         ${res["birthdate"]}                                                     ',
+                    'Birthdate:         ${res["birthdate"]}                                                                       ',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -101,19 +101,45 @@ class Udaje extends StatelessWidget {
               ],
             ),
             Container(
-              padding: EdgeInsets.only(right: 1200, top: 30.0),
+              padding: EdgeInsets.only(top: 30.0),
               child: Text(
-                'Long term illnesses: ${res["longTermIllnesses"]}',
+                'Long term illnesses: ${res["longTermIllness"]}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(right: 1200, top: 30.0),
+              padding: EdgeInsets.only(top: 30.0),
               child: Text(
                 'Injuries: ${res["injuries"]}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
+            Container(
+              padding: EdgeInsets.only(top: 30.0),
+              child: Text(
+                'Alergies: ${res["alergies"]}',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 30.0),
+              child: Text(
+                'Recipes: ${res["receipts"].map((r) {
+                  return r["medicationType"];
+                })}',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 30.0),
+              child: Text(
+                'Medical reports: ${res["medicalReports"].map((r) {
+                  return r["diagnose"];
+                })}',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            /*
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
               child: ElevatedButton(
@@ -164,6 +190,7 @@ class Udaje extends StatelessWidget {
                   },
                   child: Text('Medical')),
             ),
+            */
             Container(
               padding: EdgeInsets.only(right: 1200, top: 30.0),
               child: ElevatedButton(
@@ -216,13 +243,6 @@ class Udaje extends StatelessWidget {
                   },
                   child: Text('New medic')),
             ),
-            Container(
-              padding: EdgeInsets.only(right: 1200, top: 30.0),
-              child: Text(
-                'Alergies: ${res["alergies"]}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            )
           ])
         ]));
   }
