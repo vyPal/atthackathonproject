@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:session_storage/session_storage.dart';
 
 class Recepty extends StatelessWidget {
   Recepty({super.key, this.res});
   final res;
   final dio = Dio();
+  final session = SessionStorage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +15,7 @@ class Recepty extends StatelessWidget {
         backgroundColor: Colors.lightBlue,
         centerTitle: true,
         title: const Text(
-          "Název",
+          "Pet tag private info",
           style: TextStyle(
               fontSize: 70,
               fontStyle: FontStyle.italic,

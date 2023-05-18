@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   nfc_manager: ^3.2.0
   dio: ^5.1.2
+  flutter_blue_plus: any
+  font_awesome_flutter: ^10.4.0
 
 dev_dependencies:
   flutter_test:

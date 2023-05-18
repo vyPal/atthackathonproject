@@ -1,0 +1,10 @@
+^C:\USERS\SONDR\ONEDRIVE\PLOCHA\HACATON\ATTHACKATHONPROJECT\FLUTTER\OK\BUILD\WINDOWS\CMAKEFILES\6C2CD6E093B8489814E37C946DCBDA96\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/sondr/OneDrive/Plocha/hacaton/atthackathonproject/flutter/ok/windows -BC:/Users/sondr/OneDrive/Plocha/hacaton/atthackathonproject/flutter/ok/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/sondr/OneDrive/Plocha/hacaton/atthackathonproject/flutter/ok/build/windows/ok.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

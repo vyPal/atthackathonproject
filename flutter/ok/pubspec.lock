@@ -139,6 +139,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
+  session_storage:
+    dependency: "direct main"
+    description:
+      name: session_storage
+      sha256: b5a56115729378c0a71ff7b036fd7c1437837124cc2be154758e9e0aac70ec6e
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

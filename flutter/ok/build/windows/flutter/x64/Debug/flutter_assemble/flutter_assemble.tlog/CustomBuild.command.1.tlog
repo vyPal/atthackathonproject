@@ -1,0 +1,28 @@
+^C:\USERS\SONDR\ONEDRIVE\PLOCHA\HACATON\ATTHACKATHONPROJECT\FLUTTER\OK\BUILD\WINDOWS\CMAKEFILES\ABC467AC0397E3B8AF5D52837AA734E6\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\flutter PROJECT_DIR=C:\Users\sondr\OneDrive\Plocha\hacaton\atthackathonproject\flutter\ok FLUTTER_ROOT=C:\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\sondr\OneDrive\Plocha\hacaton\atthackathonproject\flutter\ok\windows\flutter\ephemeral PROJECT_DIR=C:\Users\sondr\OneDrive\Plocha\hacaton\atthackathonproject\flutter\ok FLUTTER_TARGET=C:\Users\sondr\OneDrive\Plocha\hacaton\atthackathonproject\flutter\ok\lib\udaje.dart DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9kNDRiNWE5NGM5NzZmYmI2NTgxNTM3NGY2MWFiNTM5MmEyMjBiMDg0Lw== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\sondr\OneDrive\Plocha\hacaton\atthackathonproject\flutter\ok\.dart_tool\package_config.json C:/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SONDR\ONEDRIVE\PLOCHA\HACATON\ATTHACKATHONPROJECT\FLUTTER\OK\BUILD\WINDOWS\CMAKEFILES\C09F09648482F846A1090ED6D8274345\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\SONDR\ONEDRIVE\PLOCHA\HACATON\ATTHACKATHONPROJECT\FLUTTER\OK\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/sondr/OneDrive/Plocha/hacaton/atthackathonproject/flutter/ok/windows -BC:/Users/sondr/OneDrive/Plocha/hacaton/atthackathonproject/flutter/ok/build/windows --check-stamp-file C:/Users/sondr/OneDrive/Plocha/hacaton/atthackathonproject/flutter/ok/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
